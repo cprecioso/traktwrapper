@@ -5,11 +5,12 @@ It's also 100% functioning. It uses [Q Promises](https://github.com/kriskowal/q)
 To use in your projects: `$ npm install traktwrapper --save` and `var Trakt = require('traktwrapper');`
 
 To compile yourself:
-
-	$ git clone https://github.com/kalprestito/traktwrapper.git
-	$ cd traktwrapper
-	$ npm install
-	$ node_modules/LiveScript/bin/lsc -c .
+```bash
+$ git clone https://github.com/kalprestito/traktwrapper.git
+$ cd traktwrapper
+$ npm install
+$ node_modules/LiveScript/bin/lsc -c .
+```
 
 ## Quickstart tutorial
 This module exposes the `Trakt` class. In order to create an instance, you must provide your API key (you can get it going [here](http://trakt.tv/api-docs/authentication) while logged in Trakt). In your instance you can set a login username and password (optional, but methods that require authentication will fail if you don't set them) with `wrapper.username` and `wrapper.password`.
@@ -24,25 +25,27 @@ So, now we have called the method and are expecting the result. But, how are we 
 
 So, now we have finished our program. It's been quite some reading but the final code is very understandable and concise:
 
-	var Trakt = require('traktwrapper');
-	
-	var wrapper = new Trakt('abcde1234andsoon'); // Your API key
-	wrapper.username = 'archimedes'; // Login username
-	wrapper.password = 'eureka'; // Login password
-	
-	wrapper.activity.user.episodes({
-        "username": "archimedes",
-        "title": "the-walking-dead",
-        "season": 1,
-        "episode": "1,2",
-        "min": 1
-    }).then(function(result) {
-		// For example, convert all timestamps to human-readable time strings
-	}).done(function (result) {
-		// The data is here at last, use it
-	}, function (error) {
-		// There's been an error, act accordingly
-	});
+```javascript
+var Trakt = require('traktwrapper');
+
+var wrapper = new Trakt('abcde1234andsoon'); // Your API key
+wrapper.username = 'archimedes'; // Login username
+wrapper.password = 'eureka'; // Login password
+
+wrapper.activity.user.episodes({
+       "username": "archimedes",
+       "title": "the-walking-dead",
+       "season": 1,
+       "episode": "1,2",
+       "min": 1
+   }).then(function(result) {
+	// For example, convert all timestamps to human-readable time strings
+}).done(function (result) {
+	// The data is here at last, use it
+}, function (error) {
+	// There's been an error, act accordingly
+});
+```
 
 ## Optional URL Parameters
 The Trakt API does *not* accept unordered optional URL parameters. That is, you have to provide all the previous arguments to an optional one, even if some of them are also optional. For example, `Trakt#activity.user.episodes({"username": "archimedes", "title": "the-walking-dead", "season": 1, "episode": "1,2", "start_ts": whatever});` will get an empty response from Trakt.tv, as `actions` wasn't set and Trakt thinks we don't want any actions. This is a fault on Trakt's side. To work around this, visit the documentation page for each method you use and look what the default value is. Use that value.
@@ -51,12 +54,12 @@ Note that this does **NOT** apply to querystring or JSON parameters, you can pic
 
 ## API Reference
 
-###  Trakt(apiKey)
+### `Trakt(apiKey)`
 Returns an instance of the Trakt object, ready to use.
 
 - `apiKey` is your Trakt.tv API key (log in Trakt and go [here](http://trakt.tv/api-docs/authentication) to get yours).
 
-### Trakt#username, Trakt#password and Trakt#passwordHash
+### `Trakt#username`, `Trakt#password` and `Trakt#passwordHash`
 These properties correspond to the username and password sent as authentication and the API key used for any request.
 
 `username` and `password` are not compulsory, but if they're not **BOTH** set, the Trakt API will be called without authentication, failing in some methods or returning less information.
@@ -65,7 +68,7 @@ The value of `password` will only be returned as `true` (if it is set) or `false
 
 Trakt requires passwords to be sent as SHA1 hashes. `traktwrapper` supposes `Trakt#password` is a plain text password and automatically hashes it. If you store passwords as hashes (you should), you might want to use the write-only `Trakt#passwordHash` property, that accepts already hashed passwords. For your convenience, a `Trakt.sha1(str)` function is provided.
 
-### Trakt#apiCall(method, data)
+### `Trakt#apiCall(method, data)`
 Calls a specific Trakt.tv method. This method is not meant to be used directly, but every *'shorthand'* API call curries this function (i.e., returns this function with `method` already populated).
 
 - `method` is an array in the form `[METHOD, ROUTE, URLPARAMS, QSPARAMS, JSONPARAMS]`, and is meant as a guideline to parse `data` and construct a `request` object. To learn more about it, view `methods.json` or `methods.json.ls`.
