@@ -2,8 +2,7 @@
   "name": "traktwrapper",
   "dependencies": {
     "q": "^1.0.1",
-    "request": "~2.34.0",
-    "underscore-keypath": "0.0.15"
+    "request": "~2.34.0"
   },
   "devDependencies": {
     "LiveScript": "^1.2.0"
