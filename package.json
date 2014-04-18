@@ -9,7 +9,7 @@
     "LiveScript": "^1.2.0"
   },
   "description": "LiveScript/JavaScript wrapper around the Trakt.tv API",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "main.js",
   "keywords": [
     "trakt",
@@ -21,7 +21,7 @@
   "license": "ISC",
   "homepage": "https://github.com/kalprestito/traktwrapper",
   "repository": {
-        "type": "git",
-        "url": "https://github.com/kalprestito/traktwrapper.git"
-	}
+    "type": "git",
+    "url": "https://github.com/kalprestito/traktwrapper.git"
+  }
 }
