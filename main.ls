@@ -1,4 +1,5 @@
 require! Q: q
+Q.longStackSupport = on
 require! crypto.createHash
 require! url.resolve
 require! \./methods.json
@@ -22,7 +23,8 @@ module.exports = class Trakt
 
 	const BASE_URL = \http://api.trakt.tv
 
-	(_api-key ? throw new Error('No apikey')) ->
+	(api-key ? throw new Error('No apikey')) ->
+		_api-key := api-key
 
 	username:~
 		-> _username
@@ -30,7 +32,7 @@ module.exports = class Trakt
 
 	password:~
 		-> !!_password
-		(str) -> _password := @@sha1 strCast str
+		(str) -> _password := sha1 strCast str
 	
 	password-hash:~
 		(str) -> _password := strCast str

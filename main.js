@@ -2,6 +2,7 @@
 (function(){
   var Q, createHash, resolve, methods, request, sha1, strCast, Trakt, toString$ = {}.toString, split$ = ''.split;
   Q = require('q');
+  Q.longStackSupport = true;
   createHash = require('crypto').createHash;
   resolve = require('url').resolve;
   methods = require('./methods.json');
@@ -25,10 +26,11 @@
     var _username, _password, _apiKey, BASE_URL, _apiCall, i$, len$, prototype = Trakt.prototype, constructor = Trakt;
     constructor.sha1 = clone$(sha1);
     BASE_URL = 'http://api.trakt.tv';
-    function Trakt(_apiKey){
-      _apiKey == null && (_apiKey = (function(){
+    function Trakt(apiKey){
+      apiKey == null && (apiKey = (function(){
         throw new Error('No apikey');
       }()));
+      _apiKey = apiKey;
     }
     Object.defineProperty(prototype, 'username', {
       get: function(){
@@ -45,7 +47,7 @@
         return !!_password;
       },
       set: function(str){
-        _password = constructor.sha1(strCast(str));
+        _password = sha1(strCast(str));
       },
       configurable: true,
       enumerable: true
