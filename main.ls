@@ -1,7 +1,6 @@
 require! Q: q
 require! crypto.createHash
 require! url.resolve
-require! \underscore-keypath
 require! \./methods.json
 
 request = Q.denodeify require 'request'
