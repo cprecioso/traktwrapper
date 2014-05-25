@@ -26,24 +26,26 @@ So, now we have called the method and are expecting the result. But, how are we 
 So, now we have finished our program. It's been quite some reading but the final code is very understandable and concise:
 
 ```javascript
-var Trakt = require('traktwrapper');
+var Trakt, wrapper;
 
-var wrapper = new Trakt('abcde1234andsoon'); // Your API key
+Trakt = require('traktwrapper');
+
+wrapper = new Trakt('abcde1234andsoon'); // Your API key
 wrapper.username = 'archimedes'; // Login username
 wrapper.password = 'eureka'; // Login password
 
 wrapper.activity.user.episodes({
-       "username": "archimedes",
-       "title": "the-walking-dead",
-       "season": 1,
-       "episode": "1,2",
-       "min": 1
-   }).then(function(result) {
-	// For example, convert all timestamps to human-readable time strings
-}).done(function (result) {
-	// The data is here at last, use it
-}, function (error) {
-	// There's been an error, act accordingly
+  username: 'archimedes',
+  title: 'the-walking-dead',
+  season: 1,
+  episode: '1,2',
+  min: 1
+}).then(function(result) {
+  // For example, convert all timestamps to human-readable time strings
+}).done(function(result) {
+  // The data is here at last, use it
+}, function(error) {
+  // There's been an error, act accordingly
 });
 ```
 
