@@ -8,7 +8,7 @@
     "LiveScript": "^1.2.0"
   },
   "description": "LiveScript/JavaScript wrapper around the Trakt.tv API",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "main.js",
   "keywords": [
     "trakt",
