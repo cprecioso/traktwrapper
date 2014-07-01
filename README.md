@@ -2,17 +2,17 @@
 This is a LiveScript/JavaScript wrapper around the [Trakt.tv API](http://trakt.tv/api-docs), made mostly as a proof of concept and to familiarize myself with [LiveScript](http://livescript.net/), the Trakt.tv API and Promises.
 It's also 100% functioning. It uses [Q Promises](https://github.com/kriskowal/q) and [request](https://github.com/mikeal/request).
 
-To use in your projects: `$ npm install traktwrapper --save` and `var Trakt = require('traktwrapper');`
+To use in your projects: `$ npm i traktwrapper --save` and `var Trakt = require('traktwrapper');`
 
 To compile yourself:
 ```bash
 $ git clone https://github.com/kalprestito/traktwrapper.git
 $ cd traktwrapper
 $ npm install
-$ node_modules/LiveScript/bin/lsc -c .
+$ node_modules/.bin/lsc -c .
 ```
 
-## Quickstart tutorial
+## Tutorial
 This module exposes the `Trakt` class. In order to create an instance, you must provide your API key (you can get it going [here](http://trakt.tv/api-docs/authentication) while logged in Trakt). In your instance you can set a login username and password (optional, but methods that require authentication will fail if you don't set them) with `wrapper.username` and `wrapper.password`.
 
 Now you're all set. You can call methods as they're listed in the [Trakt API Docs](http://trakt.tv/api-docs), e.g.: if you want to get the data for `activity/user/episodes`, call `wrapper.activity.user.episodes()`.
