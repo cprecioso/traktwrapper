@@ -25,6 +25,16 @@ module.exports = class Trakt
 
 	(api-key ? throw new Error('No apikey')) ->
 		_api-key := api-key
+		@_construct!
+	
+	_construct: -> for let method in methods
+		key-path = method.1 / \/
+			name = (..pop! / \.).0
+		
+		accessed = ::
+		for key-path
+			accessed = accessed.{}[..]
+		accessed[name] = (data) ~> @api-call method, data
 
 	username:~
 		-> _username
@@ -37,7 +47,7 @@ module.exports = class Trakt
 	password-hash:~
 		(str) -> _password := strCast str
 
-	api-call: _api-call = ([type, route, urlparams, qsparams, jsonparams] ? throw new Error('No method'), ^^data) -->
+	api-call: ([type, route, urlparams, qsparams, jsonparams] ? throw new Error('No method'), ^^data) ->
 		# Type check
 		data = switch typeof! data
 		| \Array	=> { urlparams: data.0, qsparams: data.1, jsonparams: data.2 }
@@ -78,13 +88,3 @@ module.exports = class Trakt
 			if it.statusCode is 200 then it.body else throw do
 				new Error 'Unexpected status code: ' + it.statusCode
 					..res = it
-
-	# METHOD FACTORY
-	for let method in methods
-		key-path = method.1 / \/
-			name = (..pop! / \.).0
-		
-		accessed = ::
-		for key-path
-			accessed = accessed.{}[..]
-		accessed[name] = _api-call method
