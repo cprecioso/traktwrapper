@@ -1,3 +1,5 @@
+# THIS IS NOW OBSOLETE
+
 # Trakt.tv API Wrapper
 This is a LiveScript/JavaScript wrapper around the [Trakt.tv API](http://trakt.tv/api-docs), made mostly as a proof of concept and to familiarize myself with [LiveScript](http://livescript.net/), the Trakt.tv API and Promises.
 It's also 100% functioning. It uses [Q Promises](https://github.com/kriskowal/q) and [request](https://github.com/mikeal/request).
