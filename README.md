@@ -6,7 +6,7 @@ To use in your projects: `$ npm i traktwrapper --save` and `var Trakt = require(
 
 To compile yourself:
 ```bash
-$ git clone https://github.com/kalprestito/traktwrapper.git
+$ git clone https://github.com/cprecioso/traktwrapper.git
 $ cd traktwrapper
 $ npm install
 $ node_modules/.bin/lsc -c .
